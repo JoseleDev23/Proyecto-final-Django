@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Partidos - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="table-container mt-4">
+    <h3>Listado de Partidos</h3>
+    <div class="table-responsive">
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>Deporte</th>
+                    <th>Fecha y Hora</th>
+                    <th>Instalacion</th>
+                    <th>Equipo-Local</th>
+                    <th>Equipo-Visitante</th>
+                    <!-- <th>Resultado</th> -->
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for partido in partidos %}
+                <tr>
+                    <td>{{ partido.id_deporte.nombre }}</td>
+                    <td>{{ partido.fecha_hora|date:"d/m/Y H:i" }}</td>
+                    <td>{{ partido.id_instalacion }}</td>
+                    <td>{{ partido.id_local.nombre }}</td>
+                    <td>{{ partido.id_visitante.nombre }}</td>
+                    <!-- <td>{{ partido.puntos_local }} - {{ partido.puntos_visitante }}</td> -->
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:borrar_partido' pk=partido.id_partido %}">Borrar</a>
+                            <a class="btn btn-primary btn-sm " style=" margin-right: 5px;"
+                                href="{% url 'TsDeportes:modificar_partido' pk=partido.id_partido %}">Modificar</a>
+                            <a class="btn btn-primary btn-sm" style=" margin-right: 5px;"
+                                href="{% url 'TsDeportes:detalles_partido' pk=partido.id_partido %}">Detalles</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'TsDeportes:nuevo_partido' %}">Añadir
+                                Partido</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7">
+                        <img src="{% static 'img2/sindatos.jpg' %}" alt="Sin Datos no hay Paraíso" />
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

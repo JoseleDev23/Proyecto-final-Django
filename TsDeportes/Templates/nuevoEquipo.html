@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Nuevo Equipo - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="container mt-4">
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Crear Equipo</button>
+        <a href="{% url 'TsDeportes:Equipos' %}" class="btn btn-secondary mt-2">Volver</a>
+    </form>
+</div>
+{% endblock %}

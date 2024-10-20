@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Listado de Jugadores - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="table-container mt-4">
+    <h3>Listado de Jugadores</h3>
+    <div class="table-responsive">
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Equipo</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jugador in jugadores %}
+                <tr>
+                    <td>{{ jugador.apellido1 }}</td>
+                    <td>{{ jugador.apellido2|default:"" }}</td>
+                    <td>{{ jugador.id_equipo.nombre }}</td>
+                    <td>{{ jugador.fecha_nacimiento }}</td>
+                    <td>{{ jugador.telefono }}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:borrar_jugador' pk=jugador.id_jugador %}">Borrar</a>
+                            <a class="btn btn-primary btn-sm " style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:modificar_jugador' pk=jugador.id_jugador %}">Modificar</a>
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:detalles_jugador' pk=jugador.id_jugador %}">Detalles</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'TsDeportes:nuevo_jugador' %}">Añadir
+                                Jugador</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">
+                        <img src="{% static 'img2/sindatos.jpg' %}" alt="Sin Datos no hay Paraíso" />
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

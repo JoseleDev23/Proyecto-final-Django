@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Torremolinos Sport{% endblock %}</title>
+    <!-- Incluye el enlace al CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'img2/favicon.ico' %}" type="image/x-icon">
+    <style>
+        body {
+            padding-top: 20px;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
+        }
+
+        header {
+            margin-bottom: 60px;
+            background-color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 0;
+            /* Ajuste para eliminar el margen inferior del footer */
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            /* Ajuste para aumentar el margen superior del main */
+            margin-bottom: 50px;
+            /* Ajusta este valor según la altura de tu footer */
+        }
+
+        /* Estilo para los botones de navegación */
+        .navbar-light .navbar-nav .nav-link {
+            color: #007bff;
+        }
+
+        .navbar-light {
+            background-color: white;
+        }
+
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: green;
+        }
+
+        .navbar-light .navbar-toggler-icon {
+            background-color: #007bff;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light fixed-top style=" height: 50px;">
+            <a class="navbar-brand" href="{% url 'TsDeportes:carrusel' %}">
+                <img src="/static/img2/casita.jpg" alt="Logo" style="max-height: 50px;">
+                {% if user.is_authenticated %}
+                <span style="margin-right: 40px;">Torremolinos Sport</span>
+                <span> Bienvenido: {{ user.username }}</span>
+                {% else %}
+                <span>Torremolinos Sport</span>
+                {% endif %}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'TsDeportes:Deportes'%}">Deportes</a>
+                    </li>
+                    <li class=" nav-item">
+                        <a class="nav-link" href="{% url 'TsDeportes:Equipos'%}">Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'TsDeportes:instalaciones'%}">Instalaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'TsDeportes:jugadores'%}">Jugadores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'TsDeportes:partidos'%}">Partidos</a>
+                    </li>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link text-dark" href="{% url 'TsDeportes:logout' %}">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        </a>
+                        {% endif %}
+                    </li>
+                    <!-- <li><a href="https://iesplayamar.es/" target="_blank">
+                            <img src="/static/img2/logop.png" alt="Logo" style="max-height: 60px;">
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4 ">
+        <div style="margin-top: 30px; margin: bottom 30px;">
+            {% block cuerpo %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="d-flex justify-content-between align-items-center p-3" style="background-color: #333; color: white;">
+        <p class="text-center mb-0 flex-grow-1">&copy; 2024 Jose Antonio Muñoz Sarmiento &reg;</p>
+    </footer>
+
+    <!-- Incluye los scripts de Bootstrap (jQuery y Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

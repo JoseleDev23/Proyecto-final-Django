@@ -1,0 +1,42 @@
+<!-- detallesJugador.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Detalles del Jugador - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="container mt-4">
+    <h3>Detalles del Jugador</h3>
+    <dl class="row">
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">{{ jugador.nombre }}</dd>
+
+        <dt class="col-sm-3">Apellido1:</dt>
+        <dd class="col-sm-9">{{ jugador.apellido1 }}</dd>
+
+        <dt class="col-sm-3">Apellido2:</dt>
+        <dd class="col-sm-9">{{ jugador.apellido2 }}</dd>
+
+        <dt class="col-sm-3">Equipo:</dt>
+        <dd class="col-sm-9">{{ jugador.id_equipo.nombre }}</dd>
+
+        <dt class="col-sm-3">Dorsal:</dt>
+        <dd class="col-sm-9">{{ jugador.dorsal }}</dd>
+
+        <dt class="col-sm-3">Fecha de Nacimiento:</dt>
+        <dd class="col-sm-9">{{ jugador.fecha_nacimiento }}</dd>
+
+        <dt class="col-sm-3">Altura:</dt>
+        <dd class="col-sm-9">{{ jugador.altura }}</dd>
+
+        <dt class="col-sm-3">Peso:</dt>
+        <dd class="col-sm-9">{{ jugador.peso }}</dd>
+
+        <dt class="col-sm-3">Teléfono:</dt>
+        <dd class="col-sm-9">{{ jugador.telefono }}</dd>
+    </dl>
+    <a href="{% url 'TsDeportes:jugadores' %}" class="btn btn-primary mt-2">Volver</a>
+</div>
+{% endblock %}

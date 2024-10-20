@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Borrar Partido - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="container mt-4">
+    <h3>Borrar Partido</h3>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <p>¿Estás seguro de que quieres borrar el partido con ID {{ partido.id_partido }}?</p>
+        <button type="submit" class="btn btn-danger">Confirmar Borrado</button>
+        <a href="{% url 'TsDeportes:partidos' %}" class="btn btn-secondary ml-2">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

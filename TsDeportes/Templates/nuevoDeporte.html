@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="container mt-4">
+    <form method="POST" class="p-3 mb-2 bg-light border rounded">
+        <h4 class="text-center mb-4">Nuevo Deporte</h4>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Aceptar</button>
+    </form>
+    <hr>
+    <button class="btn btn-primary"><a href="{% url 'TsDeportes:Deportes' %}" class="text-white">Volver</a></button>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Deportes - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="table-container mt-4">
+    <h3>Deportes del Patronato</h3>
+    <div class="table-responsive">
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deporte in deportes %}
+                <tr>
+                    <td>{{ deporte.id_deporte }}</td>
+                    <td>{{ deporte.nombre }}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:borrar_deporte' pk=deporte.id_deporte %}">Borrar</a>
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:modificar_deporte' pk=deporte.id_deporte %}">Modificar</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'TsDeportes:nuevo_deporte' %}">Añadir
+                                Deporte</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">
+                        <img src="{% static 'img2/sindatos.jpg' %}" alt="Sin Datos no hay Paraíso" />
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

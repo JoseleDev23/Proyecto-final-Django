@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Instalaciones - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="table-container mt-4">
+    <h3>Instalaciones del Patronato</h3>
+    <div class="table-responsive">
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Iluminación</th>
+                    <th>Cubierta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for instalacion in instalaciones %}
+                <tr>
+                    <td>{{ instalacion.id_instalacion }}</td>
+                    <td>{{ instalacion.nombre }}</td>
+                    <td>{{ instalacion.direccion }}</td>
+                    <td>{{ instalacion.iluminacion|yesno:"si,no" }}</td>
+                    <td>{{ instalacion.cubierta|yesno:"si,no" }}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:borrar_instalacion' pk=instalacion.id_instalacion %}">Borrar</a>
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:modificar_instalacion' pk=instalacion.id_instalacion %}">Modificar</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'TsDeportes:nueva_instalacion' %}">Añadir
+                                Instalación</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">
+                        <img src="{% static 'img2/sindatos.jpg' %}" alt="Sin Datos no hay Paraíso" />
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

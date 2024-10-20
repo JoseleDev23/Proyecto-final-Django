@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Detalles del Partido - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<div class="container mt-4">
+    <h3>Detalles del Partido</h3>
+    <ul>
+        <li><strong>ID:</strong> {{ partido.id_partido }}</li>
+        <li><strong>Fecha y Hora:</strong> {{ partido.fecha_hora }}</li>
+        <li><strong>Deporte:</strong> {{ partido.id_deporte.nombre }}</li>
+        <li><strong>Local:</strong> {{ partido.id_local.nombre }}</li>
+        <li><strong>Visitante:</strong> {{ partido.id_visitante.nombre }}</li>
+        <li><strong>Resultado:</strong> {{ partido.puntos_local }} - {{ partido.puntos_visitante }}</li>
+        <li><strong>Observaciones:</strong> {{ partido.observaciones }}</li>
+    </ul>
+    <a href="{% url 'TsDeportes:partidos' %}" class="btn btn-primary">Volver</a>
+</div>
+{% endblock %}

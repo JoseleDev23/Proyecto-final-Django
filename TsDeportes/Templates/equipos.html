@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Equipos - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="table-container mt-4">
+    <h3>Listado de Equipos</h3>
+    <div class="table-responsive">
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Deporte</th>
+                    <th>Contacto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for equipo in equipos %}
+                <tr>
+                    <td>{{ equipo.id_equipo }}</td>
+                    <td>{{ equipo.nombre }}</td>
+                    <td>{{ equipo.id_deporte.nombre }}</td>
+                    <td>{{ equipo.contacto }}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:borrar_equipo' pk=equipo.id_equipo %}">Borrar</a>
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                                href="{% url 'TsDeportes:modificar_equipo' pk=equipo.id_equipo %}">Modificar</a>
+                            <a class="btn btn-primary btn-sm" style="margin-right: 5px"
+                                href="{% url 'TsDeportes:detalle_equipo' pk=equipo.id_equipo %}">Detalles</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'TsDeportes:nuevo_equipo' %}">Añadir
+                                Equipo</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">
+                        <img src="{% static 'img2/sindatos.jpg' %}" alt="Sin Datos no hay Paraíso" />
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

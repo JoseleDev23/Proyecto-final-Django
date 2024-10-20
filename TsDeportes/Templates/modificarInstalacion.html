@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Modificar Instalación - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<div class="container mt-4">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+    </form>
+    <a href="{% url 'TsDeportes:instalaciones' %}" class="btn btn-secondary mt-2">Volver</a>
+</div>
+{% endblock %}

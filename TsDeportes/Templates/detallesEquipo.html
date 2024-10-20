@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Detalle de Equipo - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="container mt-4">
+    <h3>Detalles del Equipo</h3>
+    <p>ID: {{ equipo.id_equipo }}</p>
+    <p>Nombre: {{ equipo.nombre }}</p>
+    <p>Deporte: {{ equipo.id_deporte.nombre }}</p>
+    <p>Contacto: {{ equipo.contacto }}</p>
+
+    <h4>Jugadores del Equipo</h4>
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th>Dorsal</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jugador in equipo.jugador_set.all %}
+            <tr>
+                <td>{{ jugador.dorsal }}</td>
+                <td>{{ jugador.nombre }}</td>
+                <td>{{ jugador.apellido1 }} {{ jugador.apellido2|default:"" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center mt-3">
+        <a class="btn btn-primary" href="{% url 'TsDeportes:nuevo_jugador'%}">Añadir Jugador</a>
+        <a class="btn btn-primary" href="{% url 'TsDeportes:Equipos'%}">Volver a Equipos</a>
+    </div>
+</div>
+{% endblock %}

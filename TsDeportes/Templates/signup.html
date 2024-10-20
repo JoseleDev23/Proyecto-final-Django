@@ -1,0 +1,16 @@
+<!-- signup.html -->
+{% extends "baseLogin.html" %}
+
+{% block title %}Registro - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<div class="container mt-4">
+    <h2>Regístrate</h2>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+    <p>Ya tienes una cuenta? <a href="{% url 'TsDeportes:login' %}">Inicia Sesión</a></p>
+</div>
+{% endblock %}

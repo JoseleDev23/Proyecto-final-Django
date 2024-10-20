@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Confirmar Borrar Jugador - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="container mt-4">
+    <h3>¿Está seguro que desea borrar al jugador {{ jugador.nombre }} {{ jugador.apellido1 }}?</h3>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, Borrar</button>
+        <a href="{% url 'TsDeportes:jugadores' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

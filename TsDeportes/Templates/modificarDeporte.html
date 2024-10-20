@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="container mt-4">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_deporte">Selecciona un deporte:</label>
+            <select name="id_deporte" id="id_deporte" class="form-control">
+                {% for deporte in deportes %}
+                <option value="{{ deporte.id_deporte }}">{{ deporte.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+    </form>
+    <a href="{% url 'TsDeportes:Deportes' %}" class="btn btn-secondary mt-2">Volver</a>
+</div>
+{% endblock %}

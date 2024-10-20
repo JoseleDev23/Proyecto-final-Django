@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Confirmar Borrar Equipo - Torremolinos Sport{% endblock %}
+
+{% block cuerpo %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="container mt-4">
+    <h3>¿Está seguro que desea borrar el equipo {{ equipo.nombre }}?</h3>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, Borrar</button>
+        <a href="{% url 'TsDeportes:Equipos'%}" class="btn btn-secondary">Volver</a>
+    </form>
+</div>
+{% endblock %}

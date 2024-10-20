@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Borrar Deporte - Torremolinos Sport{% endblock %}
+{% block cuerpo %}
+
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}" alt="Hoja de estilos" />
+
+<div class="container mt-4">
+    <form method="post">
+        {% csrf_token %}
+        <h4 class="text-center mb-4" style="margin-top: 10px;">Eliminar Deporte</h4>
+        <p>¿Desea eliminar el deporte "{{ nombre_deporte }}"?</p>
+        <div class="d-flex justify-content-center">
+            <input type="submit" value="Borrar" class="btn btn-danger mr-2" />
+            <a href="{% url 'TsDeportes:Deportes' %}" class="btn btn-primary">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
