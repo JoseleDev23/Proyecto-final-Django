@@ -48,31 +48,34 @@ Crea un entorno virtual:
 bash
 
 python -m venv venv
+
 Activa el entorno virtual:
 
 En Windows:
 
 bash
-
 .\venv\Scripts\activate
-En macOS/Linux:
 
+En macOS/Linux:
 bash
 
 source venv/bin/activate
-Instala las dependencias:
 
+Instala las dependencias:
 bash
 
 pip install -r requirements.txt
+
 Importa la base de datos desde torrolesport.sql:
 
 Asegúrate de tener una base de datos creada en MySQL.
 
 Usa el siguiente comando en la terminal de MySQL para importar el archivo:
+
 sql
 
 SOURCE /ruta/a/torrolesport.sql;
+
 Configura la base de datos en settings.py de tu proyecto Django.
 
 Realiza las migraciones:
@@ -80,11 +83,13 @@ Realiza las migraciones:
 bash
 
 python manage.py migrate
+
 Crea un superusuario para acceder al panel de administración:
 
 bash
 
 python manage.py createsuperuser
+
 Ejecuta el servidor de desarrollo:
 
 bash
@@ -116,8 +121,11 @@ Este proyecto está licenciado bajo la Licencia MIT.
 
 markdown
 
+
 ### Instrucciones:
 
 1. **Reemplaza** `/ruta/a/torrolesport.sql` con la ruta correcta donde se encuentra el archivo SQL en tu máquina.
 2. **Asegúrate** de que el enlace al repositorio y otros enlaces estén correctamente configurados.
+
+
 
