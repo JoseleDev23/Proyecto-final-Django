@@ -119,8 +119,6 @@ Este proyecto está licenciado bajo la Licencia MIT.
 
 ¡Gracias por visitar mi proyecto! Si tienes preguntas o comentarios, no dudes en contactarme.
 
-markdown
-
 
 ### Instrucciones:
 
